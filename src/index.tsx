@@ -19,6 +19,7 @@ import {Informations} from "./FrontPartPages/pages/Informations/Informations";
 import {StaffOutlet} from "./BackPartPages/StaffOutlet";
 import {StaffDisplay} from "./BackPartPages/StaffDisplay/StaffDisplay";
 import {StaffDisplayForm} from "./BackPartPages/StaffDisplay/component/Forms/StaffDisplayForm";
+import {GaleryEditor} from "./BackPartPages/GaleryEditor/GaleryEditor";
 
 
 
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
                         element: <StaffDisplayForm/>,
                     }
                 ],
+            },
+            {
+                path: "galeryEditor",
+                element: <GaleryEditor/>
             }
         ]
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronRightIcon } from "@heroicons/react/20/solid"
 import {Link, Outlet} from "react-router-dom";
@@ -38,11 +38,29 @@ export function StaffOutlet() {
                 {
                     name:"Staff",
                     path:"/staff/staffDisplay",
-                    current: true,
+                    current: false,
+                },
+                {
+                    name:"Galerie",
+                    path:"/staff/galeryEditor",
+                    current: false,
+
                 }
             ],
         },
     ];
+    useEffect((): void => {
+        navigation.forEach((n: ITabs): void => {
+            if (n.children){
+                let tab: ITabs | undefined = n.children.find(t => t.path === window.location.pathname);
+                if (tab){
+                    setCurrentNav(n.name);
+                    setCurrentSubNav(tab.name);
+                    //break;
+                }
+            }
+        });
+    }, []);
     return (
         <div className="flex h-screen w-screen">
             <div className="flex flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-blue-800 px-6 w-2/12">

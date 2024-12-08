@@ -67,7 +67,7 @@ export function SheetTable(props: IProps): JSX.Element {
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                 {props.sheets.map((sheet) => (
-                                    <tr key={sheet.name} className="divide-x divide-gray-200"
+                                    <tr key={sheet.id} className="divide-x divide-gray-200"
                                         onClick={() => UpdateSheet(sheet.id)}>
                                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-0">
                                             {sheet.name}

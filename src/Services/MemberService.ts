@@ -10,7 +10,7 @@ export async function GetAllMembers(): Promise<IMember[]> {
     let commands: IMember[] = [];
     await axios.get(apiLink + "/All").then(function (response) {
         if (response.status !== 200) {
-            throw new Error("Impossible de récupérer les membres !");
+            alert("Impossible de récupérer les membres !");
         }else
             commands = response.data;
     });
@@ -19,8 +19,9 @@ export async function GetAllMembers(): Promise<IMember[]> {
 export async function GetAllMembersByType(type: string): Promise<IMember[]> {
     let commands: IMember[] = [];
     await axios.get(apiLink + "/ByType?type="+ type).then(function (response) {
+        console.log(response);
         if (response.status !== 200) {
-            throw new Error("Impossible de récupérer les membres du  type : " + type + " !");
+            alert("Impossible de récupérer les membres du  type : " + type + " !");
         }else
             commands = response.data;
     });
