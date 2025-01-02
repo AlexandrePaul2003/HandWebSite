@@ -20,6 +20,7 @@ import {StaffOutlet} from "./BackPartPages/StaffOutlet";
 import {StaffDisplay} from "./BackPartPages/StaffDisplay/StaffDisplay";
 import {StaffDisplayForm} from "./BackPartPages/StaffDisplay/component/Forms/StaffDisplayForm";
 import {GaleryEditor} from "./BackPartPages/GaleryEditor/GaleryEditor";
+import {GaleryPictureForm} from "./BackPartPages/GaleryEditor/Components/Forms/GaleryPictureForm";
 
 
 
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
             {
                 path: "galeryEditor",
                 element: <GaleryEditor/>
+            },
+            {
+                path: "galeryPictureForm/:Id",
+                element: <GaleryPictureForm/>,
             }
         ]
     },

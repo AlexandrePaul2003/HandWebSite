@@ -14,9 +14,9 @@ export function GaleryEditorSelect(props: IProps): JSX.Element {
     useEffect(() => {
         GetAllSubjects().then(function(result: IGalerySubject[]): void {
             let options: IOption[] = [];
-            console.log(result);
+            options = options.concat({label: "Toutes", value: -1})
             result.map((res: IGalerySubject): void => {
-                options = options.concat({label: res.name, value: res.name})
+                options = options.concat({label: res.name, value: res.id})
             });
             console.log(options)
             setSelectOptions(options);

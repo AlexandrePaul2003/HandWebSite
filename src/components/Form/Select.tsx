@@ -23,8 +23,8 @@ export function Select(props: IProps): JSX.Element {
                         id="location"
                         name="location"
                         onChange={(event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>): void => {
-                            const selectedOption = props.options.find(
-                                (o: IOption) => o.label === event.target.value
+                            const selectedOption: IOption|undefined = props.options.find(
+                                (o: IOption): boolean => o.value == event.target.value
                             );
                             props.onChange(selectedOption || props.options[0]);
                         }}

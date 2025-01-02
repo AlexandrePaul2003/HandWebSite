@@ -1,14 +1,20 @@
-import {ICommand} from "../IData/Command/ICommand";
-import axios from "axios";
+
+import axios, {AxiosResponse} from "axios";
 import {IError} from "../IData/IError";
 import {getAPILink} from "../Helper/APILinkHelper";
 import {IGalerySubject} from "../IData/GalerySubject/IGalerySubject";
+import {IGaleryPictures} from "../IData/GaleryPictures/IGaleryPictures";
 
 
 const apiLink: string = getAPILink() + "/GalerySubject";
 
 export async function GetAllSubjects(): Promise<IGalerySubject[]> {
     return await axios.get(apiLink + "/All").then(function (response) {
+        return response.data;
+    });
+}
+export async function GetSubjectById(subject_id: number): Promise<IGalerySubject>{
+    return await axios.get(apiLink+"/One?subject_pk="+subject_id).then(function (response: AxiosResponse<any>){
         return response.data;
     });
 }

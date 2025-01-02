@@ -8,9 +8,10 @@ import {Button} from "@mui/material";
 import React from "react";
 import {toast} from "react-toastify";
 import {getTostifyParams} from "../../../Helper/TostifyHelper";
-import {CreateGalerySubject, UpdateGalerySubject} from "../../../Services/GalerySubjectService";
+import {CreateGalerySubject, GetSubjectById, UpdateGalerySubject} from "../../../Services/GalerySubjectService";
 interface IProps {
     subject_pk: number;
+    cancelEditing?: (cancel: boolean) => void;
 }
 
 export function GaleryEditorSubjectForm(props: IProps): JSX.Element {
@@ -32,7 +33,7 @@ export function GaleryEditorSubjectForm(props: IProps): JSX.Element {
     async function LocalGetSubject(): Promise<IGalerySubject> {
         let subject : IGalerySubject = defaultSubject;
         if (subject_pk > -1){
-            //subject = await GetCommand(subject_pk);
+            subject = await GetSubjectById(subject_pk);
         }
         return subject;
     }
@@ -47,12 +48,19 @@ export function GaleryEditorSubjectForm(props: IProps): JSX.Element {
     }
     return (
         <>
-            <div style={{alignItems: "center", height: "100vh", width: "100%", justifyContent: "center"}}>
+            <div style={{alignItems: "center", width: "100%", justifyContent: "center"}}>
 
                 <form style={{ flexDirection: "column", gap: "10px"}}
                       onSubmit={handleSubmit((subject ) => OnSubmit(subject as IGalerySubject))}>
                     <TextFieldForm displayName={""} register={register} formName={'name'} errors={errors}/>
-                    <Button type="submit">Créer </Button>
+                    {subject_pk > -1 ? (
+                        <div>
+                            <Button type="submit">Modifier </Button>
+                            <Button type="button" onClick={(): void => {if (props.cancelEditing) props.cancelEditing(true)}}>Annuler </Button>
+                        </div>
+                    ) : (
+                        <Button type="submit">Créer </Button>
+                    )}
                 </form>
             </div>
         </>
